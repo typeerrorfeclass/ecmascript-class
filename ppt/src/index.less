@@ -1,0 +1,76 @@
+@import '../node_modules/normalize.css/normalize.css';
+@import '../node_modules/highlight.js/styles/monokai.css';
+
+body {
+  font-family: PT Sans, DejaVu Sans, Arial, sans;
+  background-color: bisque;
+  color: #333333;
+}
+
+.center {
+  text-align: center;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.cover {
+  .center;
+  .middle;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.transition {
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-delay: 0;
+  transition-timing-function: ease;
+}
+
+#reppt-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0
+  }
+
+  h1 {
+    .center;
+    font-size: 6em;
+  }
+  
+  h2 {
+    .center;
+    font-size: 5em;
+  }
+
+  li {
+    line-height: 3em;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  .ppt {
+    height: 100%;
+    margin: 0 10em;
+  }
+
+  .pages {
+    padding: 2em 0;
+  }
+
+  .hightlight-list-item {
+    font-size: 3em;
+  }
+
+  .plugin-image {
+    text-align: center;
+  }
+}
