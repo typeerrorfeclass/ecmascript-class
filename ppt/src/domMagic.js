@@ -52,7 +52,11 @@ function goNext () {
     currIndex = -1
   }
 
-  window.location.hash = `/${currIndex + 1}`
+  if (currIndex >= 1) {
+    return
+  }
+
+  goto(`/${currIndex + 1}`)
 }
 
 function goPrev () {
@@ -65,5 +69,17 @@ function goPrev () {
     return
   }
 
-  window.location.hash = `/${currIndex - 1}`
+  goto(`/${currIndex - 1}`)
+}
+
+function goto (hash) {
+  const pages = $('.ppt .pages')
+  pages.addClass('transition')
+
+  pages.css({ opacity: 0 })
+
+  setTimeout(_ => {
+    window.location.hash = hash
+    pages.css({ opacity: 1 })
+  }, 200)
 }
