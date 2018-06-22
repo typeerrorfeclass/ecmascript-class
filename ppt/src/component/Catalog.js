@@ -37,39 +37,60 @@ export default class Catalog extends React.Component {
     }
   }
 
+  renderContent (items) {
+    const warpStyle = {
+      margin: 0,
+      padding: 0,
+      color: '#CC0033',
+      height: 500,
+      overflow: 'hidden'
+    }
+
+    const titleStyle = {
+      margin: 0,
+      padding: 0,
+      height: 48,
+      lineHeight: '48px'
+    }
+
+    const listWrapStyle = {
+      margin: 0,
+      padding: 0,
+      height: 444,
+      lineHeight: 2,
+      overflow: 'auto'
+    }
+
+    const linkStyle = {
+      textDecoration: 'none',
+      color: '#333333'
+    }
+
+    return <div style={warpStyle}>
+      <h3 style={titleStyle}>目录</h3>
+      <div style={listWrapStyle}>
+        <ol>
+          {
+            items.map((item, index) => <li key={`${index}-${item}`}>
+              <Link to={`/${index}`} style={linkStyle}>{item}</Link>
+            </li>)
+          }
+        </ol>
+      </div>
+    </div>
+  }
+
   render () {
     const { items } = this.props
 
-    const warpStyle = {
-      marginTop: 7,
-      lineHeight: 2,
-      maxHeight: 400,
-      overflow: 'auto',
-      color: '#CC0033'
-    }
-
     return <div>
       <Popup
-        closeBtn
         closeOnEsc
         open={this.state.open}
         position='centerCenter'
-        onClose={this.close.bind(this)}>
-        <div style={warpStyle}>
-          <h3 style={{
-            margin: 0
-          }}>目录</h3>
-          <ul>
-            {
-              items.map((item, index) => <li key={`${index}-${item}`}>
-                <Link to={`/${index}`} style={{
-                  textDecoration: 'none',
-                  color: '#333333'
-                }}>{item}</Link>
-              </li>)
-            }
-          </ul>
-        </div>
+        onClose={this.close.bind(this)}
+        contentStyle={{ overflow: 'hidden' }}>
+        {this.renderContent(items)}
       </Popup>
     </div>
   }

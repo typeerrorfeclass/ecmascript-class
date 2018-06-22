@@ -5,7 +5,8 @@ import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 import Catalog from './component/Catalog'
 import Page from './component/Page'
 import Box from './component/Box'
-import image0 from './img/protochain.jpg'
+import image0 from './img/equality.png'
+import image1 from './img/protochain.jpg'
 
 export default class PPT extends React.Component {
   static get displayName() {
@@ -38,7 +39,7 @@ export default class PPT extends React.Component {
       currIndex = -1
     }
 
-    if (currIndex >= 36 - 1) {
+    if (currIndex >= 33 - 1) {
       return
     }
 
@@ -83,27 +84,24 @@ export default class PPT extends React.Component {
                 'babel-preset-env配置案例',
                 'babel配置文件',
                 '只转换语法就够了吗？',
-                'babel-polyfill & babel-plugin-transform-runtime',
+                'polyfill和transform-runtime',
                 '未命名',
                 'let和const',
                 '解构赋值',
                 '模板字符串',
                 '正则表达式的s修饰符',
-                'Number.isFinite()和Number.isNaN()',
-                'Number.isSafeInteger()',
+                'isFinite和isNaN',
+                'isSafeInteger',
                 '未命名',
                 '属性的简洁表示法',
                 '属性名表达式',
-                'name属性',
-                'Object.is()',
-                'Object.assign()',
-                '可枚举性和遍历',
-                '__proto__属性',
-                '扩展：原型链',
-                'Object.keys()',
-                'Object.values()',
-                'Object.entries()',
-                '对象的扩展运算符'
+                '函数的name属性',
+                'Object.is',
+                'Object.assign',
+                '__proto__',
+                'keys、values、entries',
+                'getOwnPropertyDescriptor',
+                '展开运算符'
               ]}
             />
             <Page pageIndex={0}>
@@ -386,8 +384,8 @@ var prom = new Promise(function (resolve, reject) {
               </pre>
             </Page>
             <Page pageIndex={15}>
-              <h2 id="babel-polyfill-babel-plugin-transform-runtime">
-                babel-polyfill &amp; babel-plugin-transform-runtime
+              <h2 id="polyfill-transform-runtime">
+                polyfill和transform-runtime
               </h2>
               <h3 id="babel-polyfill">babel-polyfill</h3>
               <p>
@@ -439,7 +437,14 @@ console.log(a, b, x)`}</code>
             </Page>
             <Page pageIndex={19}>
               <h2 id="-">模板字符串</h2>
-              <p>不要再用“+”号组合字符串了！</p>
+              <h3 id="-">着重强调</h3>
+              <p>不要再用“+”号组合字符串了！很业余，很容易出错！</p>
+              <h3 id="-">案例</h3>
+              <pre>
+                <code className="language-js">{`const foo = '3'
+const bar = foo + 2 + 1
+console.log(bar) // 这里的bar等于什么?`}</code>
+              </pre>
             </Page>
             <Page pageIndex={20}>
               <h2 id="-s-">正则表达式的s修饰符</h2>
@@ -450,16 +455,14 @@ console.log(a, b, x)`}</code>
               <pre>
                 <code className="language-js">{`const str = 'Hello \nworld!'
 const reg1 = /Hello.+world!/
-const reg1 = /Hello.+world!/s
+const reg2 = /Hello.+world!/s
 
 reg1.test(str)
 reg2.test(str)`}</code>
               </pre>
             </Page>
             <Page pageIndex={21}>
-              <h2 id="number-isfinite-number-isnan-">
-                Number.isFinite()和Number.isNaN()
-              </h2>
+              <h2 id="isfinite-isnan">isFinite和isNaN</h2>
               <p>isFinite判断是不是有限数值。</p>
               <p>isNaN判断是不是NaN。</p>
               <h3 id="-">要点</h3>
@@ -469,7 +472,7 @@ reg2.test(str)`}</code>
               </ul>
             </Page>
             <Page pageIndex={22}>
-              <h2 id="number-issafeinteger-">Number.isSafeInteger()</h2>
+              <h2 id="issafeinteger">isSafeInteger</h2>
               <p>
                 JavaScript
                 能够准确表示的整数范围在-2^53到2^53之间（不含两个端点），超过这个范围，无法精确表示这个值。isSafeInteger用来判断一个数是不是落在这个范围内。
@@ -479,7 +482,7 @@ reg2.test(str)`}</code>
                 <li>Number.MIN_SAFE_INTEGER</li>
                 <li>Number.MAX_SAFE_INTEGER</li>
               </ul>
-              <h3 id="-">案例</h3>
+              <h3 id="-">扩展</h3>
               <ul>
                 <li>is-odd 判断是不是奇数</li>
               </ul>
@@ -491,54 +494,228 @@ reg2.test(str)`}</code>
             </Page>
             <Page pageIndex={24}>
               <h2 id="-">属性的简洁表示法</h2>
+              <h3 id="-">案例</h3>
+              <h4 id="-">老语法</h4>
+              <pre>
+                <code className="language-js">{`const foo = 1
+const bar = 2
+
+const obj = {
+  foo: foo,
+  bar: bar
+}`}</code>
+              </pre>
+              <h4 id="-">新语法</h4>
+              <pre>
+                <code className="language-js">{`const foo = 1
+const bar = 2
+
+const obj = { foo, bar }`}</code>
+              </pre>
             </Page>
             <Page pageIndex={25}>
               <h2 id="-">属性名表达式</h2>
+              <h3 id="-">案例</h3>
+              <h4 id="-">老语法</h4>
+              <pre>
+                <code className="language-js">{`function fn (foo, bar) {
+  const ret = {}
+
+  ret[foo] = 'foo'
+  ret[bar] = 'bar'
+
+  return ret
+}`}</code>
+              </pre>
+              <h4 id="-">新语法</h4>
+              <pre>
+                <code className="language-js">{`function fn (foo, bar) {
+  return {
+    [foo]: 'foo',
+    [bar]: 'bar'
+  }
+}`}</code>
+              </pre>
             </Page>
             <Page pageIndex={26}>
-              <h2 id="name-">name属性</h2>
+              <h2 id="-name-">函数的name属性</h2>
+              <p>Function对象的name属性，可以获得函数名。</p>
+              <h3 id="-">应用场景</h3>
+              <p>调试工具，日志打印等。</p>
+              <h3 id="-">案例</h3>
+              <pre>
+                <code className="language-js">{`function foobar () {
+  return {}
+}
+
+function invoke (fn) {
+  console.log(fn.name)
+  return fn()
+}`}</code>
+              </pre>
             </Page>
             <Page pageIndex={27}>
-              <h2 id="object-is-">Object.is()</h2>
-              <h3 id="-">==和===的缺点</h3>
+              <h2 id="object-is">Object.is</h2>
+              <p>一种新的相等算法的实现。</p>
+              <p>
+                <code>{`==`}</code>和<code>{`===`}</code>的缺点：
+              </p>
               <ul>
-                <li>==会自动转换类型</li>
-                <li>===不认为NaN和NaN相等，认为+0和-0相等</li>
+                <li>
+                  <code>{`==`}</code>会自动转换类型
+                </li>
+                <li>
+                  <code>{`===`}</code>不认为NaN和NaN相等，认为+0和-0相等
+                </li>
               </ul>
               <h3 id="-">要点</h3>
               <ul>
                 <li>“Same-value equality”（同值相等）</li>
               </ul>
-            </Page>
-            <Page pageIndex={28}>
-              <h2 id="object-assign-">Object.assign()</h2>
-            </Page>
-            <Page pageIndex={29}>
-              <h2 id="-">可枚举性和遍历</h2>
-            </Page>
-            <Page pageIndex={30}>
-              <h2 id="__proto__-">__proto__属性</h2>
-              <h3 id="object-setprototypeof-object-getprototypeof-">
-                Object.setPrototypeOf()和Object.getPrototypeOf()
-              </h3>
-            </Page>
-            <Page pageIndex={31}>
-              <h2 id="-">扩展：原型链</h2>
+              <h3 id="-">扩展</h3>
+              <p>
+                <code>{`==`}</code>号的等值表（如果没有信心记住，就不要用<code>{`==`}</code>号）
+              </p>
               <div className="plugin-image">
                 <img src={image0} />
               </div>
             </Page>
+            <Page pageIndex={28}>
+              <h2 id="object-assign">Object.assign</h2>
+              <p>可以用来浅复制或者浅合并对象。</p>
+              <h3 id="-">案例</h3>
+              <pre>
+                <code className="language-js">{`const foo = { a: 1, b: 2 }
+const fee = { c: 3, d: 4 }
+
+// 复制
+const bar = Object.assign({}, foo)
+
+// 合并
+const baz = Object.assign({}, foo, fee)`}</code>
+              </pre>
+              <h3 id="-">要点</h3>
+              <ul>
+                <li>什么是“浅”，什么是“深”？</li>
+              </ul>
+              <h3 id="-">扩展</h3>
+              <ul>
+                <li>面试题：如何深拷贝一个对象？</li>
+              </ul>
+            </Page>
+            <Page pageIndex={29}>
+              <h2 id="__proto__">__proto__</h2>
+              <p>
+                指向对象原型的指针，只有浏览器承诺支持，其他环境不一定，建议不要直接使用。
+              </p>
+              <p>
+                相关知识点：Object.setPrototypeOf()和Object.getPrototypeOf()
+              </p>
+              <h3 id="-">扩展</h3>
+              <p>原型链</p>
+              <div className="plugin-image">
+                <img src={image1} />
+              </div>
+            </Page>
+            <Page pageIndex={30}>
+              <h2 id="keys-values-entries">keys、values、entries</h2>
+              <ul>
+                <li>keys用来找到对象自身可枚举的属性名</li>
+                <li>values用来找到对象自身可枚举的属性值</li>
+                <li>entries把对象转化为一个key-value数组</li>
+              </ul>
+              <h3 id="-">扩展</h3>
+              <ul>
+                <li>各种循环遍历对象的方法</li>
+                <li>面试题：把字符串/数组/类对象传入Object.keys会返回什么？</li>
+              </ul>
+            </Page>
+            <Page pageIndex={31}>
+              <h2 id="getownpropertydescriptor">getOwnPropertyDescriptor</h2>
+              <p>
+                对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为。Object.getOwnPropertyDescriptor方法可以获取该属性的描述对象。
+              </p>
+              <h3 id="-">案例</h3>
+              <pre>
+                <code className="language-js">{`let obj = { foo: 123 };
+Object.getOwnPropertyDescriptor(obj, 'foo')
+//  {
+//    value: 123,
+//    writable: true,
+//    enumerable: true,
+//    configurable: true
+//  }`}</code>
+              </pre>
+              <h3 id="-">扩展</h3>
+              <h4 id="-">可枚举性</h4>
+              <p>
+                描述对象的enumerable属性，称为“可枚举性”，如果该属性为false，就表示某些操作会忽略当前属性。
+              </p>
+              <ul>
+                <li>for...in循环：只遍历对象自身的和继承的可枚举的属性。</li>
+                <li>Object.keys()：返回对象自身的所有可枚举的属性的键名。</li>
+                <li>JSON.stringify()：只串行化对象自身的可枚举的属性。</li>
+                <li>
+                  Object.assign()：
+                  忽略不可枚举的属性，只拷贝对象自身的可枚举的属性。
+                </li>
+              </ul>
+            </Page>
             <Page pageIndex={32}>
-              <h2 id="object-keys-">Object.keys()</h2>
-            </Page>
-            <Page pageIndex={33}>
-              <h2 id="object-values-">Object.values()</h2>
-            </Page>
-            <Page pageIndex={34}>
-              <h2 id="object-entries-">Object.entries()</h2>
-            </Page>
-            <Page pageIndex={35}>
-              <h2 id="-">对象的扩展运算符</h2>
+              <h2 id="-">展开运算符</h2>
+              <p>使用...符号，可以将对象“展开”。</p>
+              <h3 id="-">案例</h3>
+              <pre>
+                <code className="language-js">{`const foo = { a: 1, b: 2 }
+const bar = {
+  ...foo,
+  c: 3
+}
+
+console.log(bar)`}</code>
+              </pre>
+              <h4 id="-">扩展</h4>
+              <p>es6中省略号的妙用。</p>
+              <p>
+                建议：请编写地道的js代码，尤其是在github上，不要一眼看上去就很业余。
+              </p>
+              <pre>
+                <code className="language-jsx">{`// 代替arguments
+function fn (...params) {
+  console.log(params)
+}
+
+// 表示剩余参数
+function fn (a, b, ...otherParams) {
+  console.log(otherParams)
+}
+
+// 代替apply
+const foo = [1, 2, 3]
+const bar = [4, 5, 6]
+foo.push(...bar) // 相当于foo.push(4, 5, 6)
+
+// 假数组转真数组
+var nodeList = document.querySelectorAll('div')
+var earlArray = [...nodeList]
+
+// 代替concat等复杂操作，构造数组
+var parts = ['shoulders', 'knees'];
+var lyrics = ['head', ...parts, 'and', 'toes'];
+
+// 代替assign构造对象
+const foo = {
+  a: 1,
+  ...bar // 展开对象
+}
+
+// react中常使用展开运算提书写效率
+function FoobarComponent (props) {
+  return <div>
+    <Dialog {...props.dialogData} />
+  </div>
+}`}</code>
+              </pre>
             </Page>
             <Route exact path="/" render={_ => <Redirect to={'/0'} />} />
           </div>

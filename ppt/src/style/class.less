@@ -1,0 +1,60 @@
+// class样式定义
+#reppt-container {
+  // markdown里面临时强调文本用的class
+  .red {
+    .highlight-text-color();
+  }
+
+  // 渐变动画使用的class
+  .transition {
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-delay: 0;
+    transition-timing-function: ease;
+  }
+
+  .ppt {
+    height: 100%;
+    margin: 0 @ppt-margin-h;
+  }
+
+  .pages {
+    padding: @page-padding-top 0 0 0;
+  }
+
+  // 封面
+  .cover {
+    .center();
+    .middle();
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  // 鼠标点击的list item
+  .hightlight-list-item {
+    .m-font-size();
+  }
+
+  // @image引入的图片
+  .plugin-image {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+#reppt-container {
+  @media only screen
+    and (max-device-width : 480px) {
+    .ppt {
+      margin: 0 @ppt-margin-h-mobile;
+    }
+
+    // 鼠标点击的list item
+    .hightlight-list-item {
+      .xs-font-size();
+    }
+  }
+}

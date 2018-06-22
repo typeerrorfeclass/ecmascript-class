@@ -1,0 +1,86 @@
+// 子元素样式重定义
+#reppt-container {
+  h1, h2, h3, h4, h5, h6 {
+    .title-text-color();
+  }
+
+  h1, h2 {
+    margin-top: 0;
+  }
+
+  h1 {
+    .center();
+    .xl-font-size();
+  }
+  
+  h2 {
+    .center();
+    .l-font-size();
+  }
+
+  h3 {
+    .m-font-size();
+    .highlight-text-color();
+  }
+
+  h4 {
+    .s-font-size();
+  }
+
+  h5 {
+    .xs-font-size();
+  }
+
+  li {
+    .tall-line();
+    .xs-font-size();
+    cursor: pointer;
+  }
+
+  p {
+    .tall-line();
+    .xs-font-size();
+  }
+
+  a {
+    .highlight-text-color();
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+#reppt-container {
+  @media only screen
+    and (max-device-width : 480px) {
+    h1 {
+      .xl-font-size-mobile();
+    }
+    
+    h2 {
+      .l-font-size-mobile();
+    }
+
+    h3 {
+      .m-font-size-mobile();
+    }
+  
+    h4 {
+      .s-font-size-mobile();
+    }
+  
+    h5 {
+      .xs-font-size-mobile();
+    }
+
+    li {
+      .xs-font-size-mobile();
+    }
+  
+    p {
+      .xs-font-size-mobile();
+    }
+  }
+}

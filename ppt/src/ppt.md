@@ -251,7 +251,7 @@ var prom = new Promise(function (resolve, reject) {
 ```
 @page
 
-## babel-polyfill & babel-plugin-transform-runtime
+## polyfill和transform-runtime
 
 ### babel-polyfill
 先于业务代码加载到浏览器中的一段脚本，用ES5实现的版本，补充浏览器中缺乏的全局对象/类型/函数等新特性。
@@ -302,7 +302,15 @@ console.log(a, b, x)
 
 ## 模板字符串
 
-不要再用“+”号组合字符串了！
+### 着重强调
+不要再用“+”号组合字符串了！很业余，很容易出错！
+
+### 案例
+``` js
+const foo = '3'
+const bar = foo + 2 + 1
+console.log(bar) // 这里的bar等于什么?
+```
 
 @page
 
@@ -314,7 +322,7 @@ console.log(a, b, x)
 ``` js
 const str = 'Hello \nworld!'
 const reg1 = /Hello.+world!/
-const reg1 = /Hello.+world!/s
+const reg2 = /Hello.+world!/s
 
 reg1.test(str)
 reg2.test(str)
@@ -322,7 +330,7 @@ reg2.test(str)
 
 @page
 
-## Number.isFinite()和Number.isNaN()
+## isFinite和isNaN
 
 isFinite判断是不是有限数值。
 
@@ -334,7 +342,7 @@ isNaN判断是不是NaN。
 
 @page
 
-## Number.isSafeInteger()
+## isSafeInteger
 
 JavaScript 能够准确表示的整数范围在-2^53到2^53之间（不含两个端点），超过这个范围，无法精确表示这个值。isSafeInteger用来判断一个数是不是落在这个范围内。
 
@@ -342,7 +350,7 @@ JavaScript 能够准确表示的整数范围在-2^53到2^53之间（不含两个
 * Number.MIN_SAFE_INTEGER
 * Number.MAX_SAFE_INTEGER
 
-### 案例
+### 扩展
 * is-odd 判断是不是奇数
 
 @page
@@ -355,56 +363,234 @@ JavaScript 能够准确表示的整数范围在-2^53到2^53之间（不含两个
 
 ## 属性的简洁表示法
 
+### 案例
+
+#### 老语法
+``` js
+const foo = 1
+const bar = 2
+
+const obj = {
+  foo: foo,
+  bar: bar
+}
+```
+
+#### 新语法
+``` js
+const foo = 1
+const bar = 2
+
+const obj = { foo, bar }
+```
+
 @page
 
 ## 属性名表达式
 
+### 案例
+
+#### 老语法
+``` js
+function fn (foo, bar) {
+  const ret = {}
+
+  ret[foo] = 'foo'
+  ret[bar] = 'bar'
+
+  return ret
+}
+```
+
+#### 新语法
+``` js
+function fn (foo, bar) {
+  return {
+    [foo]: 'foo',
+    [bar]: 'bar'
+  }
+}
+```
+
 @page
 
-## name属性
+## 函数的name属性
+
+Function对象的name属性，可以获得函数名。
+
+### 应用场景
+
+调试工具，日志打印等。
+
+### 案例
+``` js
+function foobar () {
+  return {}
+}
+
+function invoke (fn) {
+  console.log(fn.name)
+  return fn()
+}
+```
 
 @page
 
-## Object.is()
+## Object.is
 
-### ==和===的缺点
-* ==会自动转换类型
-* ===不认为NaN和NaN相等，认为+0和-0相等
+一种新的相等算法的实现。
+
+`==`和`===`的缺点：
+
+* `==`会自动转换类型
+* `===`不认为NaN和NaN相等，认为+0和-0相等
 
 ### 要点
 * “Same-value equality”（同值相等）
 
-@page
+### 扩展
 
-## Object.assign()
+`==`号的等值表（如果没有信心记住，就不要用`==`号）
 
-@page
-
-## 可枚举性和遍历
+@image(./img/equality.png)
 
 @page
 
-## \_\_proto\_\_属性
+## Object.assign
 
-### Object.setPrototypeOf()和Object.getPrototypeOf()
+可以用来浅复制或者浅合并对象。
+
+### 案例
+``` js
+const foo = { a: 1, b: 2 }
+const fee = { c: 3, d: 4 }
+
+// 复制
+const bar = Object.assign({}, foo)
+
+// 合并
+const baz = Object.assign({}, foo, fee)
+```
+
+### 要点
+* 什么是“浅”，什么是“深”？
+
+### 扩展
+* 面试题：如何深拷贝一个对象？
 
 @page
 
-## 扩展：原型链
+## \_\_proto\_\_
+
+指向对象原型的指针，只有浏览器承诺支持，其他环境不一定，建议不要直接使用。
+
+相关知识点：Object.setPrototypeOf()和Object.getPrototypeOf()
+
+### 扩展
+
+原型链
+
 @image(./img/protochain.jpg)
 
 @page
 
-## Object.keys()
+## keys、values、entries
+
+* keys用来找到对象自身可枚举的属性名
+* values用来找到对象自身可枚举的属性值
+* entries把对象转化为一个key-value数组
+
+### 扩展
+
+* 各种循环遍历对象的方法
+* 面试题：把字符串/数组/类对象传入Object.keys会返回什么？
 
 @page
 
-## Object.values()
+## getOwnPropertyDescriptor
+
+对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为。Object.getOwnPropertyDescriptor方法可以获取该属性的描述对象。
+
+### 案例
+``` js
+let obj = { foo: 123 };
+Object.getOwnPropertyDescriptor(obj, 'foo')
+//  {
+//    value: 123,
+//    writable: true,
+//    enumerable: true,
+//    configurable: true
+//  }
+```
+
+### 扩展
+
+#### 可枚举性
+
+描述对象的enumerable属性，称为“可枚举性”，如果该属性为false，就表示某些操作会忽略当前属性。
+
+* for...in循环：只遍历对象自身的和继承的可枚举的属性。
+* Object.keys()：返回对象自身的所有可枚举的属性的键名。
+* JSON.stringify()：只串行化对象自身的可枚举的属性。
+* Object.assign()： 忽略不可枚举的属性，只拷贝对象自身的可枚举的属性。
 
 @page
 
-## Object.entries()
+## 展开运算符
 
-@page
+使用...符号，可以将对象“展开”。
 
-## 对象的扩展运算符
+### 案例
+``` js
+const foo = { a: 1, b: 2 }
+const bar = {
+  ...foo,
+  c: 3
+}
+
+console.log(bar)
+```
+
+#### 扩展
+
+es6中省略号的妙用。
+
+建议：请编写地道的js代码，尤其是在github上，不要一眼看上去就很业余。
+
+``` jsx
+// 代替arguments
+function fn (...params) {
+  console.log(params)
+}
+
+// 表示剩余参数
+function fn (a, b, ...otherParams) {
+  console.log(otherParams)
+}
+
+// 代替apply
+const foo = [1, 2, 3]
+const bar = [4, 5, 6]
+foo.push(...bar) // 相当于foo.push(4, 5, 6)
+
+// 假数组转真数组
+var nodeList = document.querySelectorAll('div')
+var earlArray = [...nodeList]
+
+// 代替concat等复杂操作，构造数组
+var parts = ['shoulders', 'knees'];
+var lyrics = ['head', ...parts, 'and', 'toes'];
+
+// 代替assign构造对象
+const foo = {
+  a: 1,
+  ...bar // 展开对象
+}
+
+// react中常使用展开运算提书写效率
+function FoobarComponent (props) {
+  return <div>
+    <Dialog {...props.dialogData} />
+  </div>
+}
+```
