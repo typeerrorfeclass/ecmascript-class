@@ -129,7 +129,7 @@ export default class PPT extends React.Component {
               <h3 id="-">联系方式</h3>
               <p>
                 <img
-                  src="https://typeerrorfeclass.github.com/home/wechat.png"
+                  src="https://typeerrorfeclass.github.io/home/wechat.png"
                   alt="微信二维码"
                 />
               </p>
