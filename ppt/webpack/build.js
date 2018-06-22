@@ -8,7 +8,7 @@ var AggressiveMergingPlugin = webpack.optimize.AggressiveMergingPlugin
 module.exports = {
   entry: path.resolve(__dirname, '../src/index.js'),
   output: {
-    path: path.resolve(__dirname, '../public'),
+    path: path.resolve(__dirname, '../docs'),
     filename: 'index.js',
     umdNamedDefine: true
   },

@@ -18,7 +18,7 @@
 
 ### 联系方式
 
-![微信二维码](https://github.com/typeerrorfeclass/home/raw/master/wechat.png)
+![微信二维码](https://typeerrorfeclass.github.com/home/wechat.png)
 
 @page
 

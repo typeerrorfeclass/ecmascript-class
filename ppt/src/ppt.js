@@ -1,11 +1,11 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 // import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import Catalog from './component/Catalog'
 import Page from './component/Page'
 import Box from './component/Box'
-import image9 from './img/protochain.jpg'
+import image0 from './img/protochain.jpg'
 
 export default class PPT extends React.Component {
   static get displayName() {
@@ -33,7 +33,10 @@ export default class PPT extends React.Component {
   }
 
   goNext() {
-    const currIndex = parseInt(window.location.pathname.replace(/^\//, ''))
+    let currIndex = parseInt(window.location.hash.replace('#/', ''))
+    if (isNaN(currIndex)) {
+      currIndex = -1
+    }
 
     if (currIndex >= 36 - 1) {
       return
@@ -43,7 +46,10 @@ export default class PPT extends React.Component {
   }
 
   goPrev() {
-    const currIndex = parseInt(window.location.pathname.replace(/^\//, ''))
+    let currIndex = parseInt(window.location.hash.replace('#/', ''))
+    if (isNaN(currIndex)) {
+      currIndex = 1
+    }
 
     if (currIndex === 0) {
       return
@@ -123,7 +129,7 @@ export default class PPT extends React.Component {
               <h3 id="-">联系方式</h3>
               <p>
                 <img
-                  src="https://github.com/typeerrorfeclass/home/raw/master/wechat.png"
+                  src="https://typeerrorfeclass.github.com/home/wechat.png"
                   alt="微信二维码"
                 />
               </p>
@@ -519,7 +525,7 @@ reg2.test(str)`}</code>
             <Page pageIndex={31}>
               <h2 id="-">扩展：原型链</h2>
               <div className="plugin-image">
-                <img src={image9} />
+                <img src={image0} />
               </div>
             </Page>
             <Page pageIndex={32}>

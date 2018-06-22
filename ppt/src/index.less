@@ -4,7 +4,7 @@
 body {
   font-family: PT Sans, DejaVu Sans, Arial, sans;
   background-color: bisque;
-  color: #333333;
+  color: #555555;
 }
 
 .center {
@@ -36,13 +36,18 @@ body {
   color: #CC0033;
 }
 
+.black {
+  color: #333333;
+}
+
 #reppt-container {
   position: absolute;
   width: 100%;
   height: 100%;
 
   h1, h2, h3, h4, h5, h6 {
-    margin-top: 0
+    .black;
+    margin-top: 0;
   }
 
   h1 {
@@ -55,9 +60,21 @@ body {
     font-size: 5rem;
   }
 
-  li {
-    line-height: 3rem;
+  h3 {
     font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+  }
+
+  li {
+    line-height: 2.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
   }
 
@@ -69,10 +86,6 @@ body {
   a {
     .red;
     text-decoration: none;
-  }
-
-  img {
-    max-width: 100%;
   }
 
   .ppt {
@@ -89,6 +102,7 @@ body {
   }
 
   .plugin-image {
+    max-width: 100%;
     text-align: center;
   }
 }
