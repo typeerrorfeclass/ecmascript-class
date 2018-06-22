@@ -52,10 +52,6 @@ function goNext () {
     currIndex = -1
   }
 
-  if (currIndex >= 2 - 1) {
-    return
-  }
-
   window.location.hash = `/${currIndex + 1}`
 }
 
