@@ -37,11 +37,11 @@ function enableSwipeToNext () {
   const pages = document.querySelector('.ppt')
   const h = new Hammer(pages)
 
-  h.on('swipeleft', _ => {
+  h.on('swiperight', _ => {
     goPrev()
   })
 
-  h.on('swiperight', _ => {
+  h.on('swipeleft', _ => {
     goNext()
   })
 }
