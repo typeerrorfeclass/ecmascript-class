@@ -52,10 +52,6 @@ function goNext () {
     currIndex = -1
   }
 
-  if (currIndex >= 1) {
-    return
-  }
-
   goto(`/${currIndex + 1}`)
 }
 
