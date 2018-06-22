@@ -13,12 +13,12 @@
 
 ### 访问地址
 
-* 课程主页: https://github.com/typeerrorfeclass/home
+* 课程主页: https://typeerrorfeclass.github.io
 * YY直播间: [34592948](https://0x9.me/j4v80)
 
 ### 联系方式
 
-![微信二维码](https://typeerrorfeclass.github.io/home/wechat.png)
+![微信二维码](https://typeerrorfeclass.github.io/wechat.png)
 
 @page
 

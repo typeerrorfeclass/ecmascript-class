@@ -116,8 +116,8 @@ export default class PPT extends React.Component {
               <ul>
                 <li>
                   课程主页:{' '}
-                  <a href="https://github.com/typeerrorfeclass/home">
-                    https://github.com/typeerrorfeclass/home
+                  <a href="https://typeerrorfeclass.github.io">
+                    https://typeerrorfeclass.github.io
                   </a>
                 </li>
                 <li>
@@ -127,7 +127,7 @@ export default class PPT extends React.Component {
               <h3 id="-">联系方式</h3>
               <p>
                 <img
-                  src="https://typeerrorfeclass.github.io/home/wechat.png"
+                  src="https://typeerrorfeclass.github.io/wechat.png"
                   alt="微信二维码"
                 />
               </p>
