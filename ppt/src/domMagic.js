@@ -3,7 +3,9 @@ import Hammer from 'hammerjs'
 
 export default function domMagic () {
   enableLargeListItem()
-  enableSwipeToNext()
+  if (isMobile() || window.location.href.includes('swipe')) {
+    enableSwipeToNext()
+  }
 }
 
 function enableLargeListItem () {
@@ -44,6 +46,24 @@ function enableSwipeToNext () {
   h.on('swipeleft', _ => {
     goNext()
   })
+}
+
+function isMobile () {
+  const ua = window.navigator.userAgent.toLowerCase()
+
+  if (/android/i.test(ua)) {
+    return true
+  }
+
+  if (/(iphone|ipad|ipod|ios)/i.test(ua)) {
+    return true
+  }
+  if (/linux/i.test(ua)) {
+    return true
+  }
+  if (/micromessenger/i.test(ua)) {
+    return true
+  }
 }
 
 function goNext () {

@@ -1,26 +1,26 @@
 // 子元素样式重定义
 #reppt-container {
-  h1, h2, h3, h4, h5, h6 {
-    .title-text-color();
-  }
-
   h1, h2 {
+    .center();
     margin-top: 0;
   }
 
   h1 {
-    .center();
+    .title-text-color();
     .xl-font-size();
   }
   
   h2 {
-    .center();
+    .sub-title-text-color();
     .l-font-size();
+  }
+
+  h3, h4, h5, h6 {
+    .xsub-title-text-color();
   }
 
   h3 {
     .m-font-size();
-    .highlight-text-color();
   }
 
   h4 {

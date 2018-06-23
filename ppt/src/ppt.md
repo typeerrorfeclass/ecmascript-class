@@ -11,12 +11,17 @@
 
 ## TypeError课程介绍
 
+TypeError前端直播室是一个线上前端技术培训项目, 目前和专业培训机构合作打造课程.
+
+获取详细信息请扫码加微信.
+
 ### 访问地址
 
-* 课程主页: https://typeerrorfeclass.github.io
-* YY直播间: [34592948](https://0x9.me/j4v80)
+* 主页: [typeerrorfeclass.github.io](https://typeerrorfeclass.github.io)
+* 直播: [YY直播间34592948](https://www.yy.com/34592948/34592948)
+* github: [@typeerrorfeclass](https://github.com/typeerrorfeclass)
 
-### 联系方式
+### 微信扫码
 
 ![微信二维码](https://typeerrorfeclass.github.io/assets/wechat.png)
 
@@ -284,6 +289,7 @@ babel-polyfill很大.
 
 ## 解构赋值
 
+### 案例
 ``` js
 const [a, b] = [1, 2]
 console.log(a, b)
@@ -303,7 +309,7 @@ console.log(a, b, x)
 ## 模板字符串
 
 ### 着重强调
-不要再用“+”号组合字符串了！很业余, 很容易出错！
+不要再用“+”号组合字符串了!很业余, 很容易出错!
 
 ### 案例
 ``` js
@@ -438,7 +444,7 @@ function invoke (fn) {
 
 ## Object.is
 
-一种新的相等算法的实现.
+is是一种新的相等算法的实现.
 
 `==`和`===`的缺点: 
 
@@ -458,7 +464,7 @@ function invoke (fn) {
 
 ## Object.assign
 
-可以用来浅复制或者浅合并对象.
+assign可以用来浅复制或者浅合并对象.
 
 ### 案例
 ``` js
@@ -482,7 +488,7 @@ const baz = Object.assign({}, foo, fee)
 
 ## \_\_proto\_\_
 
-指向对象原型的指针, 只有浏览器承诺支持, 其他环境不一定, 建议不要直接使用.
+\_\_proto\_\_是指向对象原型的指针, 只有浏览器承诺支持, 其他环境不一定, 建议不要直接使用.
 
 相关知识点: Object.setPrototypeOf()和Object.getPrototypeOf()
 
@@ -527,7 +533,7 @@ Object.getOwnPropertyDescriptor(obj, 'foo')
 
 #### 可枚举性
 
-描述对象的enumerable属性, 称为“可枚举性”, 如果该属性为false, 就表示某些操作会忽略当前属性.
+对象字段的enumerable属性, 称为“可枚举性”, 如果该属性为false, 就表示某些操作会忽略当前属性.
 
 * for...in循环: 只遍历对象自身的和继承的可枚举的属性.
 * Object.keys(): 返回对象自身的所有可枚举的属性的键名.
@@ -551,36 +557,11 @@ const bar = {
 console.log(bar)
 ```
 
-#### 扩展
-
-es6中省略号的妙用.
+对象展开的妙用. 
 
 建议: 请编写地道的js代码, 尤其是在github上, 不要一眼看上去就很业余.
 
 ``` jsx
-// 代替arguments
-function fn (...params) {
-  console.log(params)
-}
-
-// 表示剩余参数
-function fn (a, b, ...otherParams) {
-  console.log(otherParams)
-}
-
-// 代替apply
-const foo = [1, 2, 3]
-const bar = [4, 5, 6]
-foo.push(...bar) // 相当于foo.push(4, 5, 6)
-
-// 假数组转真数组
-var nodeList = document.querySelectorAll('div')
-var earlArray = [...nodeList]
-
-// 代替concat等复杂操作, 构造数组
-var parts = ['shoulders', 'knees'];
-var lyrics = ['head', ...parts, 'and', 'toes'];
-
 // 代替assign构造对象
 const foo = {
   a: 1,
@@ -594,3 +575,335 @@ function FoobarComponent (props) {
   </div>
 }
 ```
+
+@page
+
+@box({"className": "cover"})
+# 数组专题
+@boxEnd
+
+## 展开运算符
+
+使用...符号, 可以将数组"展开". 
+
+### 案例
+
+数组展开的妙用. 
+
+``` js
+// 代替apply
+const foo = [1, 2, 3]
+const bar = [4, 5, 6]
+foo.push(...bar) // 相当于foo.push(4, 5, 6)
+
+// 假数组转真数组
+var nodeList = document.querySelectorAll('div')
+var earlArray = [...nodeList]
+
+// 代替concat等复杂操作, 构造数组
+var parts = ['shoulders', 'knees'];
+var lyrics = ['head', ...parts, 'and', 'toes'];
+```
+
+@page
+
+## find和findIndex
+
+建议: 不要再使用for循环或者forEach或者filter去寻找数组中的某个元素!
+
+### 案例
+``` js
+// 找出第一个小于0的元素
+[1, 4, -5, 10].find((n) => n < 0)
+
+// 找出第一个小于0的元素的下标
+[1, 4, -5, 10].findIndex((value, index, arr) => value < 0)
+```
+
+### 要点
+* findIndex和indexOf的区别
+
+### 扩展
+* map用来将一个数组映射为另一个数组
+* reduce用来通过某种运算归并数组元素
+* filter用来过滤满足条件的数组元素
+* some用来判断数组中有没有元素满足某种条件
+* every用来判断数组中的元素是不是都满足某种条件
+* forEach用来做遍历(除非你用forEach写出的代码更短, 否则不要用)
+* find和findIndex用来寻找符合条件的元素
+
+@page
+
+## includes
+
+includes用来判断数组中是不是包含某个值. 
+
+### 要点
+* includes和indexOf的区别. 
+
+@page
+
+@box({"className": "cover"})
+# 函数专题
+@boxEnd
+
+@page
+
+## 参数展开
+
+### 案例
+``` js
+// 代替arguments
+function fn (...params) {
+  console.log(params)
+}
+
+// 表示剩余参数
+function fn (a, b, ...otherParams) {
+  console.log(otherParams)
+}
+```
+
+@page
+
+## 参数默认值
+
+ES6函数的参数列表中可以写参数默认值.
+
+### 案例
+
+老语法:
+``` js
+function foobar (p1) {
+  p1 = (typeof p1 === 'undefined') ? 'something' : p1
+  // ...
+}
+```
+
+新语法: 
+``` js
+function foobar (p1 = 'something') {
+  // ...
+}
+```
+
+### 扩展
+
+* 老语法中的坑: 
+  * 由于特殊类型转换为布尔值问题导致的bug
+* 结论: 能用新语法不要用老语法
+
+@page
+
+## 箭头函数
+
+箭头函数是一种定义函数的新语法. 
+
+### 案例
+
+老语法: 
+``` js
+[1, 2, 3].map(function (el) {
+  return el * 2
+})
+```
+
+新语法: 
+``` js
+[1, 2, 3].map(el => el * 2)
+```
+
+### 要点
+* 箭头函数对于this指针的规定
+* 匿名函数尽量使用箭头函数性质定义
+
+@page
+
+## bind
+
+bind是给函数绑定this指针和参数的方法. 
+
+学名: 柯里化(curry)
+
+### 案例
+
+老语法: 
+``` js
+function hello (otherWords = '') {
+  console.log('Hello ' + this.name + '.\n' + otherWords)
+}
+
+const lucy = {
+  name: 'Lucy'
+}
+
+function niceToMeetLucy() {
+  hello.call(lucy, 'Nice to neet you.')
+}
+
+niceToMeetLucy()
+```
+
+新语法: 
+``` js
+function hello (otherWords = '') {
+  console.log('Hello ' + this.name + '.\n' + otherWords)
+}
+
+const lucy = {
+  name: 'Lucy'
+}
+
+const niceToMeetLucy = hello.bind(lucy, 'Nice to neet you.')
+
+sayHelloToLucy()
+```
+
+### 扩展
+* javascript中的this指针
+* 面试题: call/apply/bind的作用分别是什么?
+
+@page
+
+@box({"className": "cover"})
+# class专题
+@boxEnd
+
+@page
+
+## 关于class你需要知道的
+
+* 如何定义class?
+* class关键字背后做了什么(对应到ES5老语法)?
+* 如何继承一个class?
+
+### 案例
+老语法: 
+``` js
+function Person (name = 'Fang Huainan') {
+  this.name_ = name
+}
+
+Person.prototype.sayName = function () {
+  console.log('My name is ' + this.name_ + '.')
+}
+
+const somebody = new Person('Jack')
+
+somebody.sayName()
+```
+
+新语法: 
+``` js
+class Person {
+  constructor (name = 'Fang Huainan') {
+    this.name_ = name
+  }
+
+  sayName () {
+    console.log('My name is ' + this.name_ + '.')
+  }
+}
+
+const somebody = new Person('Jack')
+
+somebody.sayName()
+```
+
+属性: 
+``` js
+class Person {
+  get name () {
+    return this.name_
+  }
+
+  constructor (name = 'Fang Huainan') {
+    this.name_ = name
+  }
+}
+
+const somebody = new Person('Jack')
+
+console.log(somebody.name)
+```
+
+static: 
+``` js
+class Person {
+  static firstUpperCase(name) {
+    const ret = name
+    //...
+    return ret
+  }
+
+
+  constructor (name = 'Fang Huainan') {
+    this.name_ = Man.firstUpperCase(name)
+  }
+}
+
+const somebody = new Person('jack')
+
+console.log(somebody.name)
+
+```
+
+继承: 
+``` js
+class Person {
+  constructor (name = 'Fang Huainan') {
+    this.name_ = name
+  }
+
+  sayName () {
+    console.log('My name is ' + this.name_ + '.')
+  }
+
+  sayHello (otherName = '') {
+    console.log('Hello ' + otherName + '.')
+  }
+}
+
+class GentlePerson extedns {
+  constructor (name, gentleWords = 'Nice to meet you.') {
+    super(name)
+    this.gentleWords_ = gentleWords
+  }
+
+  sayHello (otherName = '') {
+    console.log(super.sayHello(otherName))
+    console.log(this.gentleWords_)
+  }
+}
+```
+
+### 要点
+* 继承到底是如何实现的？对象属性和方法的向上搜索规则.
+* 不要学了个继承就到处用! 尽量少用集成! 能用组合代替就不要用继承!
+* 什么时候使用static属性和方法?
+
+### 扩展
+
+javascript对象模型. 
+
+* class/function/prototype/\_\_proto\_\_之间的关系是什么?
+
+@page
+
+@box({"className": "cover"})
+# 异步专题
+@boxEnd
+
+## javascript中的事件循环和三种异步
+
+* macro task
+* micro task
+* 物理线程
+
+@page
+
+## Promise
+
+@page
+
+## async和await

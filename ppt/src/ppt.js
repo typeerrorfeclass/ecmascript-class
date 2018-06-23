@@ -39,7 +39,7 @@ export default class PPT extends React.Component {
       currIndex = -1
     }
 
-    if (currIndex >= 33 - 1) {
+    if (currIndex >= 46 - 1) {
       return
     }
 
@@ -101,7 +101,20 @@ export default class PPT extends React.Component {
                 '__proto__',
                 'keys、values、entries',
                 'getOwnPropertyDescriptor',
-                '展开运算符'
+                '展开运算符',
+                '未命名',
+                'find和findIndex',
+                'includes',
+                '未命名',
+                '参数展开',
+                '参数默认值',
+                '箭头函数',
+                'bind',
+                '未命名',
+                '关于class你需要知道的',
+                '未命名',
+                'Promise',
+                'async和await'
               ]}
             />
             <Page pageIndex={0}>
@@ -112,19 +125,33 @@ export default class PPT extends React.Component {
             </Page>
             <Page pageIndex={1}>
               <h2 id="typeerror-">TypeError课程介绍</h2>
+              <p>
+                TypeError前端直播室是一个线上前端技术培训项目,
+                目前和专业培训机构合作打造课程.
+              </p>
+              <p>获取详细信息请扫码加微信.</p>
               <h3 id="-">访问地址</h3>
               <ul>
                 <li>
-                  课程主页:{' '}
+                  主页:{' '}
                   <a href="https://typeerrorfeclass.github.io">
-                    https://typeerrorfeclass.github.io
+                    typeerrorfeclass.github.io
                   </a>
                 </li>
                 <li>
-                  YY直播间: <a href="https://0x9.me/j4v80">34592948</a>
+                  直播:{' '}
+                  <a href="https://www.yy.com/34592948/34592948">
+                    YY直播间34592948
+                  </a>
+                </li>
+                <li>
+                  github:{' '}
+                  <a href="https://github.com/typeerrorfeclass">
+                    @typeerrorfeclass
+                  </a>
                 </li>
               </ul>
-              <h3 id="-">联系方式</h3>
+              <h3 id="-">微信扫码</h3>
               <p>
                 <img
                   src="https://typeerrorfeclass.github.io/assets/wechat.png"
@@ -432,6 +459,7 @@ var prom = new Promise(function (resolve, reject) {
             </Page>
             <Page pageIndex={18}>
               <h2 id="-">解构赋值</h2>
+              <h3 id="-">案例</h3>
               <pre>
                 <code className="language-js">{`const [a, b] = [1, 2]
 console.log(a, b)
@@ -449,7 +477,7 @@ console.log(a, b, x)`}</code>
             <Page pageIndex={19}>
               <h2 id="-">模板字符串</h2>
               <h3 id="-">着重强调</h3>
-              <p>不要再用“+”号组合字符串了！很业余, 很容易出错！</p>
+              <p>不要再用“+”号组合字符串了!很业余, 很容易出错!</p>
               <h3 id="-">案例</h3>
               <pre>
                 <code className="language-js">{`const foo = '3'
@@ -573,7 +601,7 @@ function invoke (fn) {
             </Page>
             <Page pageIndex={27}>
               <h2 id="object-is">Object.is</h2>
-              <p>一种新的相等算法的实现.</p>
+              <p>is是一种新的相等算法的实现.</p>
               <p>
                 <code>{`==`}</code>和<code>{`===`}</code>的缺点:{' '}
               </p>
@@ -599,7 +627,7 @@ function invoke (fn) {
             </Page>
             <Page pageIndex={28}>
               <h2 id="object-assign">Object.assign</h2>
-              <p>可以用来浅复制或者浅合并对象.</p>
+              <p>assign可以用来浅复制或者浅合并对象.</p>
               <h3 id="-">案例</h3>
               <pre>
                 <code className="language-js">{`const foo = { a: 1, b: 2 }
@@ -623,8 +651,8 @@ const baz = Object.assign({}, foo, fee)`}</code>
             <Page pageIndex={29}>
               <h2 id="__proto__">__proto__</h2>
               <p>
-                指向对象原型的指针, 只有浏览器承诺支持, 其他环境不一定,
-                建议不要直接使用.
+                __proto__是指向对象原型的指针, 只有浏览器承诺支持,
+                其他环境不一定, 建议不要直接使用.
               </p>
               <p>
                 相关知识点: Object.setPrototypeOf()和Object.getPrototypeOf()
@@ -669,7 +697,7 @@ Object.getOwnPropertyDescriptor(obj, 'foo')
               <h3 id="-">扩展</h3>
               <h4 id="-">可枚举性</h4>
               <p>
-                描述对象的enumerable属性, 称为“可枚举性”, 如果该属性为false,
+                对象字段的enumerable属性, 称为“可枚举性”, 如果该属性为false,
                 就表示某些操作会忽略当前属性.
               </p>
               <ul>
@@ -695,37 +723,13 @@ const bar = {
 
 console.log(bar)`}</code>
               </pre>
-              <h4 id="-">扩展</h4>
-              <p>es6中省略号的妙用.</p>
+              <p>对象展开的妙用. </p>
               <p>
                 建议: 请编写地道的js代码, 尤其是在github上,
                 不要一眼看上去就很业余.
               </p>
               <pre>
-                <code className="language-jsx">{`// 代替arguments
-function fn (...params) {
-  console.log(params)
-}
-
-// 表示剩余参数
-function fn (a, b, ...otherParams) {
-  console.log(otherParams)
-}
-
-// 代替apply
-const foo = [1, 2, 3]
-const bar = [4, 5, 6]
-foo.push(...bar) // 相当于foo.push(4, 5, 6)
-
-// 假数组转真数组
-var nodeList = document.querySelectorAll('div')
-var earlArray = [...nodeList]
-
-// 代替concat等复杂操作, 构造数组
-var parts = ['shoulders', 'knees'];
-var lyrics = ['head', ...parts, 'and', 'toes'];
-
-// 代替assign构造对象
+                <code className="language-jsx">{`// 代替assign构造对象
 const foo = {
   a: 1,
   ...bar // 展开对象
@@ -738,6 +742,316 @@ function FoobarComponent (props) {
   </div>
 }`}</code>
               </pre>
+            </Page>
+            <Page pageIndex={33}>
+              <Box data={{ className: 'cover' }}>
+                <h1 id="-">数组专题</h1>
+              </Box>
+              <h2 id="-">展开运算符</h2>
+              <p>使用...符号, 可以将数组&quot;展开&quot;. </p>
+              <h3 id="-">案例</h3>
+              <p>数组展开的妙用. </p>
+              <pre>
+                <code className="language-js">{`// 代替apply
+const foo = [1, 2, 3]
+const bar = [4, 5, 6]
+foo.push(...bar) // 相当于foo.push(4, 5, 6)
+
+// 假数组转真数组
+var nodeList = document.querySelectorAll('div')
+var earlArray = [...nodeList]
+
+// 代替concat等复杂操作, 构造数组
+var parts = ['shoulders', 'knees'];
+var lyrics = ['head', ...parts, 'and', 'toes'];`}</code>
+              </pre>
+            </Page>
+            <Page pageIndex={34}>
+              <h2 id="find-findindex">find和findIndex</h2>
+              <p>
+                建议:
+                不要再使用for循环或者forEach或者filter去寻找数组中的某个元素!
+              </p>
+              <h3 id="-">案例</h3>
+              <pre>
+                <code className="language-js">{`// 找出第一个小于0的元素
+[1, 4, -5, 10].find((n) => n < 0)
+
+// 找出第一个小于0的元素的下标
+[1, 4, -5, 10].findIndex((value, index, arr) => value < 0)`}</code>
+              </pre>
+              <h3 id="-">要点</h3>
+              <ul>
+                <li>findIndex和indexOf的区别</li>
+              </ul>
+              <h3 id="-">扩展</h3>
+              <ul>
+                <li>map用来将一个数组映射为另一个数组</li>
+                <li>reduce用来通过某种运算归并数组元素</li>
+                <li>filter用来过滤满足条件的数组元素</li>
+                <li>some用来判断数组中有没有元素满足某种条件</li>
+                <li>every用来判断数组中的元素是不是都满足某种条件</li>
+                <li>
+                  forEach用来做遍历(除非你用forEach写出的代码更短, 否则不要用)
+                </li>
+                <li>find和findIndex用来寻找符合条件的元素</li>
+              </ul>
+            </Page>
+            <Page pageIndex={35}>
+              <h2 id="includes">includes</h2>
+              <p>includes用来判断数组中是不是包含某个值. </p>
+              <h3 id="-">要点</h3>
+              <ul>
+                <li>includes和indexOf的区别. </li>
+              </ul>
+            </Page>
+            <Page pageIndex={36}>
+              <Box data={{ className: 'cover' }}>
+                <h1 id="-">函数专题</h1>
+              </Box>
+            </Page>
+            <Page pageIndex={37}>
+              <h2 id="-">参数展开</h2>
+              <h3 id="-">案例</h3>
+              <pre>
+                <code className="language-js">{`// 代替arguments
+function fn (...params) {
+  console.log(params)
+}
+
+// 表示剩余参数
+function fn (a, b, ...otherParams) {
+  console.log(otherParams)
+}`}</code>
+              </pre>
+            </Page>
+            <Page pageIndex={38}>
+              <h2 id="-">参数默认值</h2>
+              <p>ES6函数的参数列表中可以写参数默认值.</p>
+              <h3 id="-">案例</h3>
+              <p>老语法:</p>
+              <pre>
+                <code className="language-js">{`function foobar (p1) {
+  p1 = (typeof p1 === 'undefined') ? 'something' : p1
+  // ...
+}`}</code>
+              </pre>
+              <p>新语法: </p>
+              <pre>
+                <code className="language-js">{`function foobar (p1 = 'something') {
+  // ...
+}`}</code>
+              </pre>
+              <h3 id="-">扩展</h3>
+              <ul>
+                <li>
+                  老语法中的坑:{' '}
+                  <ul>
+                    <li>由于特殊类型转换为布尔值问题导致的bug</li>
+                  </ul>
+                </li>
+                <li>结论: 能用新语法不要用老语法</li>
+              </ul>
+            </Page>
+            <Page pageIndex={39}>
+              <h2 id="-">箭头函数</h2>
+              <p>箭头函数是一种定义函数的新语法. </p>
+              <h3 id="-">案例</h3>
+              <p>老语法: </p>
+              <pre>
+                <code className="language-js">{`[1, 2, 3].map(function (el) {
+  return el * 2
+})`}</code>
+              </pre>
+              <p>新语法: </p>
+              <pre>
+                <code className="language-js">{`[1, 2, 3].map(el => el * 2)`}</code>
+              </pre>
+              <h3 id="-">要点</h3>
+              <ul>
+                <li>箭头函数对于this指针的规定</li>
+                <li>匿名函数尽量使用箭头函数性质定义</li>
+              </ul>
+            </Page>
+            <Page pageIndex={40}>
+              <h2 id="bind">bind</h2>
+              <p>bind是给函数绑定this指针和参数的方法. </p>
+              <p>学名: 柯里化(curry)</p>
+              <h3 id="-">案例</h3>
+              <p>老语法: </p>
+              <pre>
+                <code className="language-js">{`function hello (otherWords = '') {
+  console.log('Hello ' + this.name + '.\n' + otherWords)
+}
+
+const lucy = {
+  name: 'Lucy'
+}
+
+function niceToMeetLucy() {
+  hello.call(lucy, 'Nice to neet you.')
+}
+
+niceToMeetLucy()`}</code>
+              </pre>
+              <p>新语法: </p>
+              <pre>
+                <code className="language-js">{`function hello (otherWords = '') {
+  console.log('Hello ' + this.name + '.\n' + otherWords)
+}
+
+const lucy = {
+  name: 'Lucy'
+}
+
+const niceToMeetLucy = hello.bind(lucy, 'Nice to neet you.')
+
+sayHelloToLucy()`}</code>
+              </pre>
+              <h3 id="-">扩展</h3>
+              <ul>
+                <li>javascript中的this指针</li>
+                <li>面试题: call/apply/bind的作用分别是什么?</li>
+              </ul>
+            </Page>
+            <Page pageIndex={41}>
+              <Box data={{ className: 'cover' }}>
+                <h1 id="class-">class专题</h1>
+              </Box>
+            </Page>
+            <Page pageIndex={42}>
+              <h2 id="-class-">关于class你需要知道的</h2>
+              <ul>
+                <li>如何定义class?</li>
+                <li>class关键字背后做了什么(对应到ES5老语法)?</li>
+                <li>如何继承一个class?</li>
+              </ul>
+              <h3 id="-">案例</h3>
+              <p>老语法: </p>
+              <pre>
+                <code className="language-js">{`function Person (name = 'Fang Huainan') {
+  this.name_ = name
+}
+
+Person.prototype.sayName = function () {
+  console.log('My name is ' + this.name_ + '.')
+}
+
+const somebody = new Person('Jack')
+
+somebody.sayName()`}</code>
+              </pre>
+              <p>新语法: </p>
+              <pre>
+                <code className="language-js">{`class Person {
+  constructor (name = 'Fang Huainan') {
+    this.name_ = name
+  }
+
+  sayName () {
+    console.log('My name is ' + this.name_ + '.')
+  }
+}
+
+const somebody = new Person('Jack')
+
+somebody.sayName()`}</code>
+              </pre>
+              <p>属性: </p>
+              <pre>
+                <code className="language-js">{`class Person {
+  get name () {
+    return this.name_
+  }
+
+  constructor (name = 'Fang Huainan') {
+    this.name_ = name
+  }
+}
+
+const somebody = new Person('Jack')
+
+console.log(somebody.name)`}</code>
+              </pre>
+              <p>static: </p>
+              <pre>
+                <code className="language-js">{`class Person {
+  static firstUpperCase(name) {
+    const ret = name
+    //...
+    return ret
+  }
+
+
+  constructor (name = 'Fang Huainan') {
+    this.name_ = Man.firstUpperCase(name)
+  }
+}
+
+const somebody = new Person('jack')
+
+console.log(somebody.name)
+`}</code>
+              </pre>
+              <p>继承: </p>
+              <pre>
+                <code className="language-js">{`class Person {
+  constructor (name = 'Fang Huainan') {
+    this.name_ = name
+  }
+
+  sayName () {
+    console.log('My name is ' + this.name_ + '.')
+  }
+
+  sayHello (otherName = '') {
+    console.log('Hello ' + otherName + '.')
+  }
+}
+
+class GentlePerson extedns {
+  constructor (name, gentleWords = 'Nice to meet you.') {
+    super(name)
+    this.gentleWords_ = gentleWords
+  }
+
+  sayHello (otherName = '') {
+    console.log(super.sayHello(otherName))
+    console.log(this.gentleWords_)
+  }
+}`}</code>
+              </pre>
+              <h3 id="-">要点</h3>
+              <ul>
+                <li>继承到底是如何实现的？对象属性和方法的向上搜索规则.</li>
+                <li>
+                  不要学了个继承就到处用! 尽量少用集成!
+                  能用组合代替就不要用继承!
+                </li>
+                <li>什么时候使用static属性和方法?</li>
+              </ul>
+              <h3 id="-">扩展</h3>
+              <p>javascript对象模型. </p>
+              <ul>
+                <li>class/function/prototype/__proto__之间的关系是什么?</li>
+              </ul>
+            </Page>
+            <Page pageIndex={43}>
+              <Box data={{ className: 'cover' }}>
+                <h1 id="-">异步专题</h1>
+              </Box>
+              <h2 id="javascript-">javascript中的事件循环和三种异步</h2>
+              <ul>
+                <li>macro task</li>
+                <li>micro task</li>
+                <li>物理线程</li>
+              </ul>
+            </Page>
+            <Page pageIndex={44}>
+              <h2 id="promise">Promise</h2>
+            </Page>
+            <Page pageIndex={45}>
+              <h2 id="async-await">async和await</h2>
             </Page>
             <Route exact path="/" render={_ => <Redirect to={'/0'} />} />
           </div>
