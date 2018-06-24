@@ -910,7 +910,7 @@ javascript对象模型.
 * micro task
 * 物理线程(x)
 
-### Task优先级队列
+### Task队列执行流程
 
 @image(./img/task.jpg)
 
@@ -918,7 +918,7 @@ javascript对象模型.
 
 ## Promise
 
-异步回调的新语法，防止出现过多的缩进，同时统一了回调函数的形式，没有什么神奇的。
+异步回调的新语法，防止出现过多的缩进，同时统一了回调函数的形式，此外没有什么神奇的。
 
 ### 案例
 
@@ -984,7 +984,7 @@ copyFile('...', '...', err => {
 
 新语法：
 ``` js
-function capyFile (src, dst) {
+function copyFile (src, dst) {
   return readFile(src).then(content => {
     return writeFile(dst, content)
   })
@@ -1017,7 +1017,7 @@ copyFile('...', '...')
 
 Promise:
 ``` js
-function capyFile (src, dst) {
+function copyFile (src, dst) {
   return readFile(src).then(content => {
     return writeFile(dst, content)
   })
@@ -1029,7 +1029,7 @@ copyFile('...', '...')
 ```
 
 ``` js
-function async capyFile (src, dst) {
+async function copyFile (src, dst) {
   const content = await readFile(src)
   writeFile(dst, content)
 }
