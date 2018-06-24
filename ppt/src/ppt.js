@@ -1,15 +1,16 @@
 import React from 'react'
-import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 // import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
-import Catalog from './component/Catalog'
 import Page from './component/Page'
 import Box from './component/Box'
 import image0 from './img/equality.png'
 import image1 from './img/protochain.jpg'
+import image2 from './img/eventloop.jpg'
+import image3 from './img/task.jpg'
 
 export default class PPT extends React.Component {
-  static get displayName() {
+  static displayName() {
     return 'PPT'
   }
 
@@ -34,12 +35,9 @@ export default class PPT extends React.Component {
   }
 
   goNext() {
-    let currIndex = parseInt(window.location.hash.replace('#/', ''))
-    if (isNaN(currIndex)) {
-      currIndex = -1
-    }
+    const currIndex = parseInt(window.location.pathname.replace(/^\//, ''))
 
-    if (currIndex >= 46 - 1) {
+    if (currIndex >= 48 - 1) {
       return
     }
 
@@ -47,10 +45,7 @@ export default class PPT extends React.Component {
   }
 
   goPrev() {
-    let currIndex = parseInt(window.location.hash.replace('#/', ''))
-    if (isNaN(currIndex)) {
-      currIndex = 1
-    }
+    const currIndex = parseInt(window.location.pathname.replace(/^\//, ''))
 
     if (currIndex === 0) {
       return
@@ -67,56 +62,6 @@ export default class PPT extends React.Component {
             this.router_ = c
           }}>
           <div className="pages">
-            <Catalog
-              items={[
-                '首页',
-                'TypeError课程介绍',
-                '课程内容',
-                '未命名',
-                '常见问题',
-                'ECMAScript是什么?',
-                'ES6、ES2015……是什么?',
-                'tc39是什么?',
-                '未命名',
-                'babel基本概念',
-                'babel的基本使用',
-                'babel-preset-env',
-                'babel-preset-env配置案例',
-                'babel配置文件',
-                '只转换语法就够了吗?',
-                'polyfill和transform-runtime',
-                '未命名',
-                'let和const',
-                '解构赋值',
-                '模板字符串',
-                '正则表达式的s修饰符',
-                'isFinite和isNaN',
-                'isSafeInteger',
-                '未命名',
-                '属性的简洁表示法',
-                '属性名表达式',
-                '函数的name属性',
-                'Object.is',
-                'Object.assign',
-                '__proto__',
-                'keys、values、entries',
-                'getOwnPropertyDescriptor',
-                '展开运算符',
-                '未命名',
-                'find和findIndex',
-                'includes',
-                '未命名',
-                '参数展开',
-                '参数默认值',
-                '箭头函数',
-                'bind',
-                '未命名',
-                '关于class你需要知道的',
-                '未命名',
-                'Promise',
-                'async和await'
-              ]}
-            />
             <Page pageIndex={0}>
               <Box data={{ className: 'cover' }}>
                 <h1 id="-javascript">现代javascript</h1>
@@ -265,7 +210,7 @@ Stage 4 - Finished(定案阶段)`}</code>
               <h2 id="babel-">babel基本概念</h2>
               <h3 id="babel-">babel是什么?</h3>
               <p>
-                将新语法转换为ES5老语法的<span className="red">转译器</span>(transpiler).
+                将新语法转换为ES5老语法的<span class="red">转译器</span>(transpiler).
               </p>
               <h3 id="-">相关模块</h3>
               <ul>
@@ -283,11 +228,11 @@ Stage 4 - Finished(定案阶段)`}</code>
               <h2 id="babel-">babel的基本使用</h2>
               <h3 id="-">安装</h3>
               <pre>
-                <code className="language-sh">{`npm i babel-cli -g`}</code>
+                <code class="language-sh">{`npm i babel-cli -g`}</code>
               </pre>
               <h3 id="-">基本使用</h3>
               <pre>
-                <code className="language-sh">{`cd demo/babel-basic-using
+                <code class="language-sh">{`cd demo/babel-basic-using
 npm i
 babel es6.js`}</code>
               </pre>
@@ -317,13 +262,13 @@ babel es6.js`}</code>
               <h2 id="babel-preset-env-">babel-preset-env配置案例</h2>
               <h3 id="-ie10">兼容上两个版本, IE10</h3>
               <pre>
-                <code className="language-json">{`{
-  "presets": [
+                <code class="language-json">{`{
+  &quot;presets&quot;: [
     [
-      "env",
+      &quot;env&quot;,
       {
-        "targets": {
-          "browsers": ["last 2 versions", "ie >= 10"]
+        &quot;targets&quot;: {
+          &quot;browsers&quot;: [&quot;last 2 versions&quot;, &quot;ie &gt;= 10&quot;]
         }
       }
     ]
@@ -332,13 +277,13 @@ babel es6.js`}</code>
               </pre>
               <h3 id="-chrome-65">兼容Chrome 65</h3>
               <pre>
-                <code className="language-json">{`{
-  "presets": [
+                <code class="language-json">{`{
+  &quot;presets&quot;: [
     [
-      "env",
+      &quot;env&quot;,
       {
-        "targets": {
-          "chrome": 65
+        &quot;targets&quot;: {
+          &quot;chrome&quot;: 65
         }
       }
     ]
@@ -361,36 +306,36 @@ babel es6.js`}</code>
               </p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-json">{`{
-  "presets": [
+                <code class="language-json">{`{
+  &quot;presets&quot;: [
     [
-      "env",
+      &quot;env&quot;,
       {
-        "targets": {
-          "browsers": ["last 2 versions", "ie >= 10"]
+        &quot;targets&quot;: {
+          &quot;browsers&quot;: [&quot;last 2 versions&quot;, &quot;ie &gt;= 10&quot;]
         },
-        "debug": false
+        &quot;debug&quot;: false
       }
     ]
   ],
-  "plugins": [
-    "transform-class-properties",
-    "transform-decorators-legacy",
+  &quot;plugins&quot;: [
+    &quot;transform-class-properties&quot;,
+    &quot;transform-decorators-legacy&quot;,
 
     [
-      "transform-react-jsx",
+      &quot;transform-react-jsx&quot;,
       {
-        "pragma": "React.createElement"
+        &quot;pragma&quot;: &quot;React.createElement&quot;
       }
     ],
 
     [
-      "transform-runtime",
+      &quot;transform-runtime&quot;,
       {
-        "helpers": true,
-        "polyfill": true,
-        "regenerator": true,
-        "moduleName": "babel-runtime"
+        &quot;helpers&quot;: true,
+        &quot;polyfill&quot;: true,
+        &quot;regenerator&quot;: true,
+        &quot;moduleName&quot;: &quot;babel-runtime&quot;
       }
     ]
   ]
@@ -402,13 +347,13 @@ babel es6.js`}</code>
               <h2 id="-">只转换语法就够了吗?</h2>
               <h3 id="-">请看这段代码</h3>
               <pre>
-                <code className="language-js">{`const prom = new Promise((resolve, reject) => {
-  setTimeout(_ => resolve(), 1000)
+                <code class="language-js">{`const prom = new Promise((resolve, reject) =&gt; {
+  setTimeout(_ =&gt; resolve(), 1000)
 })`}</code>
               </pre>
               <h3 id="-">转换后的代码</h3>
               <pre>
-                <code className="language-js">{`"use strict";
+                <code class="language-js">{`&quot;use strict&quot;;
 
 var prom = new Promise(function (resolve, reject) {
   setTimeout(function (_) {
@@ -461,7 +406,7 @@ var prom = new Promise(function (resolve, reject) {
               <h2 id="-">解构赋值</h2>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`const [a, b] = [1, 2]
+                <code class="language-js">{`const [a, b] = [1, 2]
 console.log(a, b)
 
 const [a, b, c = 3] = [1, 2]
@@ -480,7 +425,7 @@ console.log(a, b, x)`}</code>
               <p>不要再用“+”号组合字符串了!很业余, 很容易出错!</p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`const foo = '3'
+                <code class="language-js">{`const foo = '3'
 const bar = foo + 2 + 1
 console.log(bar) // 这里的bar等于什么?`}</code>
               </pre>
@@ -493,7 +438,7 @@ console.log(bar) // 这里的bar等于什么?`}</code>
               </p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`const str = 'Hello \nworld!'
+                <code class="language-js">{`const str = 'Hello \nworld!'
 const reg1 = /Hello.+world!/
 const reg2 = /Hello.+world!/s
 
@@ -542,7 +487,7 @@ reg2.test(str)`}</code>
               <h3 id="-">案例</h3>
               <h4 id="-">老语法</h4>
               <pre>
-                <code className="language-js">{`const foo = 1
+                <code class="language-js">{`const foo = 1
 const bar = 2
 
 const obj = {
@@ -552,7 +497,7 @@ const obj = {
               </pre>
               <h4 id="-">新语法</h4>
               <pre>
-                <code className="language-js">{`const foo = 1
+                <code class="language-js">{`const foo = 1
 const bar = 2
 
 const obj = { foo, bar }`}</code>
@@ -563,7 +508,7 @@ const obj = { foo, bar }`}</code>
               <h3 id="-">案例</h3>
               <h4 id="-">老语法</h4>
               <pre>
-                <code className="language-js">{`function fn (foo, bar) {
+                <code class="language-js">{`function fn (foo, bar) {
   const ret = {}
 
   ret[foo] = 'foo'
@@ -574,7 +519,7 @@ const obj = { foo, bar }`}</code>
               </pre>
               <h4 id="-">新语法</h4>
               <pre>
-                <code className="language-js">{`function fn (foo, bar) {
+                <code class="language-js">{`function fn (foo, bar) {
   return {
     [foo]: 'foo',
     [bar]: 'bar'
@@ -589,7 +534,7 @@ const obj = { foo, bar }`}</code>
               <p>调试工具, 日志打印等.</p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`function foobar () {
+                <code class="language-js">{`function foobar () {
   return {}
 }
 
@@ -621,7 +566,7 @@ function invoke (fn) {
               <p>
                 <code>{`==`}</code>号的等值表(如果没有信心记住, 就不要用<code>{`==`}</code>号)
               </p>
-              <div className="plugin-image">
+              <div class="plugin-image">
                 <img src={image0} />
               </div>
             </Page>
@@ -630,7 +575,7 @@ function invoke (fn) {
               <p>assign可以用来浅复制或者浅合并对象.</p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`const foo = { a: 1, b: 2 }
+                <code class="language-js">{`const foo = { a: 1, b: 2 }
 const fee = { c: 3, d: 4 }
 
 // 复制
@@ -659,7 +604,7 @@ const baz = Object.assign({}, foo, fee)`}</code>
               </p>
               <h3 id="-">扩展</h3>
               <p>原型链</p>
-              <div className="plugin-image">
+              <div class="plugin-image">
                 <img src={image1} />
               </div>
             </Page>
@@ -685,7 +630,7 @@ const baz = Object.assign({}, foo, fee)`}</code>
               </p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`let obj = { foo: 123 };
+                <code class="language-js">{`let obj = { foo: 123 };
 Object.getOwnPropertyDescriptor(obj, 'foo')
 //  {
 //    value: 123,
@@ -715,7 +660,7 @@ Object.getOwnPropertyDescriptor(obj, 'foo')
               <p>使用...符号, 可以将对象“展开”.</p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`const foo = { a: 1, b: 2 }
+                <code class="language-js">{`const foo = { a: 1, b: 2 }
 const bar = {
   ...foo,
   c: 3
@@ -729,7 +674,7 @@ console.log(bar)`}</code>
                 不要一眼看上去就很业余.
               </p>
               <pre>
-                <code className="language-jsx">{`// 代替assign构造对象
+                <code class="language-jsx">{`// 代替assign构造对象
 const foo = {
   a: 1,
   ...bar // 展开对象
@@ -737,9 +682,9 @@ const foo = {
 
 // react中常使用展开运算提书写效率
 function FoobarComponent (props) {
-  return <div>
-    <Dialog {...props.dialogData} />
-  </div>
+  return &lt;div&gt;
+    &lt;Dialog {...props.dialogData} /&gt;
+  &lt;/div&gt;
 }`}</code>
               </pre>
             </Page>
@@ -752,7 +697,7 @@ function FoobarComponent (props) {
               <h3 id="-">案例</h3>
               <p>数组展开的妙用. </p>
               <pre>
-                <code className="language-js">{`// 代替apply
+                <code class="language-js">{`// 代替apply
 const foo = [1, 2, 3]
 const bar = [4, 5, 6]
 foo.push(...bar) // 相当于foo.push(4, 5, 6)
@@ -774,11 +719,11 @@ var lyrics = ['head', ...parts, 'and', 'toes'];`}</code>
               </p>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`// 找出第一个小于0的元素
-[1, 4, -5, 10].find((n) => n < 0)
+                <code class="language-js">{`// 找出第一个小于0的元素
+[1, 4, -5, 10].find((n) =&gt; n &lt; 0)
 
 // 找出第一个小于0的元素的下标
-[1, 4, -5, 10].findIndex((value, index, arr) => value < 0)`}</code>
+[1, 4, -5, 10].findIndex((value, index, arr) =&gt; value &lt; 0)`}</code>
               </pre>
               <h3 id="-">要点</h3>
               <ul>
@@ -814,7 +759,7 @@ var lyrics = ['head', ...parts, 'and', 'toes'];`}</code>
               <h2 id="-">参数展开</h2>
               <h3 id="-">案例</h3>
               <pre>
-                <code className="language-js">{`// 代替arguments
+                <code class="language-js">{`// 代替arguments
 function fn (...params) {
   console.log(params)
 }
@@ -831,14 +776,14 @@ function fn (a, b, ...otherParams) {
               <h3 id="-">案例</h3>
               <p>老语法:</p>
               <pre>
-                <code className="language-js">{`function foobar (p1) {
+                <code class="language-js">{`function foobar (p1) {
   p1 = (typeof p1 === 'undefined') ? 'something' : p1
   // ...
 }`}</code>
               </pre>
               <p>新语法: </p>
               <pre>
-                <code className="language-js">{`function foobar (p1 = 'something') {
+                <code class="language-js">{`function foobar (p1 = 'something') {
   // ...
 }`}</code>
               </pre>
@@ -859,13 +804,13 @@ function fn (a, b, ...otherParams) {
               <h3 id="-">案例</h3>
               <p>老语法: </p>
               <pre>
-                <code className="language-js">{`[1, 2, 3].map(function (el) {
+                <code class="language-js">{`[1, 2, 3].map(function (el) {
   return el * 2
 })`}</code>
               </pre>
               <p>新语法: </p>
               <pre>
-                <code className="language-js">{`[1, 2, 3].map(el => el * 2)`}</code>
+                <code class="language-js">{`[1, 2, 3].map(el =&gt; el * 2)`}</code>
               </pre>
               <h3 id="-">要点</h3>
               <ul>
@@ -880,7 +825,7 @@ function fn (a, b, ...otherParams) {
               <h3 id="-">案例</h3>
               <p>老语法: </p>
               <pre>
-                <code className="language-js">{`function hello (otherWords = '') {
+                <code class="language-js">{`function hello (otherWords = '') {
   console.log('Hello ' + this.name + '.\n' + otherWords)
 }
 
@@ -896,7 +841,7 @@ niceToMeetLucy()`}</code>
               </pre>
               <p>新语法: </p>
               <pre>
-                <code className="language-js">{`function hello (otherWords = '') {
+                <code class="language-js">{`function hello (otherWords = '') {
   console.log('Hello ' + this.name + '.\n' + otherWords)
 }
 
@@ -929,7 +874,7 @@ sayHelloToLucy()`}</code>
               <h3 id="-">案例</h3>
               <p>老语法: </p>
               <pre>
-                <code className="language-js">{`function Person (name = 'Fang Huainan') {
+                <code class="language-js">{`function Person (name = 'Fang Huainan') {
   this.name_ = name
 }
 
@@ -943,7 +888,7 @@ somebody.sayName()`}</code>
               </pre>
               <p>新语法: </p>
               <pre>
-                <code className="language-js">{`class Person {
+                <code class="language-js">{`class Person {
   constructor (name = 'Fang Huainan') {
     this.name_ = name
   }
@@ -959,7 +904,7 @@ somebody.sayName()`}</code>
               </pre>
               <p>属性: </p>
               <pre>
-                <code className="language-js">{`class Person {
+                <code class="language-js">{`class Person {
   get name () {
     return this.name_
   }
@@ -975,7 +920,7 @@ console.log(somebody.name)`}</code>
               </pre>
               <p>static: </p>
               <pre>
-                <code className="language-js">{`class Person {
+                <code class="language-js">{`class Person {
   static firstUpperCase(name) {
     const ret = name
     //...
@@ -995,7 +940,7 @@ console.log(somebody.name)
               </pre>
               <p>继承: </p>
               <pre>
-                <code className="language-js">{`class Person {
+                <code class="language-js">{`class Person {
   constructor (name = 'Fang Huainan') {
     this.name_ = name
   }
@@ -1040,18 +985,145 @@ class GentlePerson extedns {
               <Box data={{ className: 'cover' }}>
                 <h1 id="-">异步专题</h1>
               </Box>
-              <h2 id="javascript-">javascript中的事件循环和三种异步</h2>
+            </Page>
+            <Page pageIndex={44}>
+              <h2 id="javascript-">javascript中的事件循环</h2>
+              <h3 id="-">一定要建立画面感</h3>
+              <div class="plugin-image">
+                <img src={image2} />
+              </div>
+            </Page>
+            <Page pageIndex={45}>
+              <h2 id="-">三种异步</h2>
               <ul>
                 <li>macro task</li>
                 <li>micro task</li>
-                <li>物理线程</li>
+                <li>物理线程(x)</li>
+              </ul>
+              <h3 id="task-">Task优先级队列</h3>
+              <div class="plugin-image">
+                <img src={image3} />
+              </div>
+            </Page>
+            <Page pageIndex={46}>
+              <h2 id="promise">Promise</h2>
+              <p>
+                异步回调的新语法，防止出现过多的缩进，同时统一了回调函数的形式，没有什么神奇的。
+              </p>
+              <h3 id="-">案例</h3>
+              <p>老语法：</p>
+              <pre>
+                <code class="language-js">{`function delay (fn, timeout, finishCallback) {
+  setTimeout(_ =&gt; {
+  fn()
+  finishCallback()
+  }, timeout)
+}
+
+delay(_ =&gt; console.log('foobar', 1000, _ =&gt; console.log('finished')))`}</code>
+              </pre>
+              <p>新语法：</p>
+              <pre>
+                <code class="language-js">{`// 定义
+function delay (fn, timeout) {
+  return new Promise(resolve =&gt; {
+    setTimeout(_ =&gt; {
+      fn()
+      resolve()
+    }, timeout)
+  })
+}
+
+//调用
+delay(_ =&gt; console.log('foobar', 1000).then(_ =&gt; console.log('finished'))`}</code>
+              </pre>
+              <h3 id="-">多层回调</h3>
+              <p>老语法：</p>
+              <pre>
+                <code class="language-js">{`function copyFile(src, dst, callback) {
+  readFile(src, (err, content) =&gt; {
+    if (err) {
+      callback(err)
+      return
+    }
+
+    writeFile(dst, content, err =&gt; {
+      if (err) {
+        callback(err)
+        return
+      }
+
+      callback()
+    })
+  })
+}
+
+copyFile('...', '...', err =&gt; {
+  if (err) {
+    //...
+    return
+  }
+
+  //...
+})`}</code>
+              </pre>
+              <p>新语法：</p>
+              <pre>
+                <code class="language-js">{`function capyFile (src, dst) {
+  return readFile(src).then(content =&gt; {
+    return writeFile(dst, content)
+  })
+}
+
+copyFile('...', '...')
+  .then(_ =&gt; console.log('finished'))
+  .catch(err =&gt; console.error(err))`}</code>
+              </pre>
+              <h3 id="-">要点</h3>
+              <ul>
+                <li>Promise一旦创建是不能不执行的</li>
+                <li>创建一个Promise，只能用一次，不能重复使用</li>
+                <li>Promise的三个状态：pending -&gt; fulfilled | rejected</li>
+                <li>try/catch不能捕获Promise中的异常</li>
+                <li>链式调用</li>
               </ul>
             </Page>
-            <Page pageIndex={44}>
-              <h2 id="promise">Promise</h2>
-            </Page>
-            <Page pageIndex={45}>
+            <Page pageIndex={47}>
               <h2 id="async-await">async和await</h2>
+              <p>一种比Promise更好用的语法.</p>
+              <h3 id="-">案例</h3>
+              <p>Promise:</p>
+              <pre>
+                <code class="language-js">{`function capyFile (src, dst) {
+  return readFile(src).then(content =&gt; {
+    return writeFile(dst, content)
+  })
+}
+
+copyFile('...', '...')
+  .then(_ =&gt; console.log('finished'))
+  .catch(err =&gt; console.error(err))`}</code>
+              </pre>
+              <pre>
+                <code class="language-js">{`function async capyFile (src, dst) {
+  const content = await readFile(src)
+  writeFile(dst, content)
+}
+
+async function main () {
+  try {
+    await copyFile('...', '...')
+    console.log('finished')
+  } catch (err) {
+    console.error(err)
+  }
+}`}</code>
+              </pre>
+              <h3 id="-">要点</h3>
+              <ul>
+                <li>Promise和async/await的关系</li>
+                <li>try/catch可以捕获await过程中的异常</li>
+              </ul>
             </Page>
             <Route exact path="/" render={_ => <Redirect to={'/0'} />} />
           </div>
