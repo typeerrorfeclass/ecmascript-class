@@ -894,16 +894,157 @@ javascript对象模型.
 # 异步专题
 @boxEnd
 
-## javascript中的事件循环和三种异步
+@page
+
+## javascript中的事件循环
+
+### 一定要建立画面感
+
+@image(./img/eventloop.jpg)
+
+@page
+
+## 三种异步
 
 * macro task
 * micro task
-* 物理线程
+* 物理线程(x)
+
+### Task优先级队列
+
+@image(./img/task.jpg)
 
 @page
 
 ## Promise
 
+异步回调的新语法，防止出现过多的缩进，同时统一了回调函数的形式，没有什么神奇的。
+
+### 案例
+
+老语法：
+``` js
+function delay (fn, timeout, finishCallback) {
+  setTimeout(_ => {
+  fn()
+  finishCallback()
+  }, timeout)
+}
+
+delay(_ => console.log('foobar', 1000, _ => console.log('finished')))
+```
+
+新语法：
+``` js
+// 定义
+function delay (fn, timeout) {
+  return new Promise(resolve => {
+    setTimeout(_ => {
+      fn()
+      resolve()
+    }, timeout)
+  })
+}
+
+//调用
+delay(_ => console.log('foobar', 1000).then(_ => console.log('finished'))
+```
+
+### 多层回调
+
+老语法：
+``` js
+function copyFile(src, dst, callback) {
+  readFile(src, (err, content) => {
+    if (err) {
+      callback(err)
+      return
+    }
+
+    writeFile(dst, content, err => {
+      if (err) {
+        callback(err)
+        return
+      }
+
+      callback()
+    })
+  })
+}
+
+copyFile('...', '...', err => {
+  if (err) {
+    //...
+    return
+  }
+
+  //...
+})
+```
+
+新语法：
+``` js
+function capyFile (src, dst) {
+  return readFile(src).then(content => {
+    return writeFile(dst, content)
+  })
+}
+
+copyFile('...', '...')
+  .then(_ => console.log('finished'))
+  .catch(err => console.error(err))
+```
+
+
+
+### 要点
+
+* Promise一旦创建是不能不执行的
+* 创建一个Promise，只能用一次，不能重复使用
+* Promise的三个状态：pending -> fulfilled | rejected
+* try/catch不能捕获Promise中的异常
+* 链式调用
+
+
+
 @page
 
 ## async和await
+
+一种比Promise更好用的语法.
+
+### 案例
+
+Promise:
+``` js
+function capyFile (src, dst) {
+  return readFile(src).then(content => {
+    return writeFile(dst, content)
+  })
+}
+
+copyFile('...', '...')
+  .then(_ => console.log('finished'))
+  .catch(err => console.error(err))
+```
+
+``` js
+function async capyFile (src, dst) {
+  const content = await readFile(src)
+  writeFile(dst, content)
+}
+
+async function main () {
+  try {
+    await copyFile('...', '...')
+    console.log('finished')
+  } catch (err) {
+    console.error(err)
+  }
+}
+```
+
+### 要点
+
+* Promise和async/await的关系
+* try/catch可以捕获await过程中的异常
