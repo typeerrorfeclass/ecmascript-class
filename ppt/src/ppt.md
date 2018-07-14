@@ -995,8 +995,6 @@ copyFile('...', '...')
   .catch(err => console.error(err))
 ```
 
-
-
 ### 要点
 
 * Promise一旦创建是不能不执行的
@@ -1004,8 +1002,6 @@ copyFile('...', '...')
 * Promise的三个状态：pending -> fulfilled | rejected
 * try/catch不能捕获Promise中的异常
 * 链式调用
-
-
 
 @page
 
